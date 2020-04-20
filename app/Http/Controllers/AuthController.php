@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Firebase\JWT\JWT;
+use Firebase\JWT\ExpiredException;
 use App\User;
 
 class AuthController extends Controller
@@ -17,6 +21,17 @@ class AuthController extends Controller
         //
     }
 
+    protected function jwt(User $user) {
+        $payload = [
+            'iss' => 'nesha-jwt',
+            'sub' => $user->uuid,
+            'iat' => time(),
+            'exp' => time() + 60*60
+        ];
+
+        return jwt::encode($payload, env('JWT_SECRET'));
+    }
+ 
     public function register(Request $request)
     {
         $this->validate($request, [
@@ -39,5 +54,30 @@ class AuthController extends Controller
 
             return response()->json(['message' => 'User Registration Failed'], 409);
         }
+    }
+
+    public function login(Request $request)
+    {
+          //validate incoming request 
+        $this->validate($request, [
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        $user = User::where('email', $request->input('email'))->first();
+
+        if (!$user) {
+            return response()->json([
+                'error' => 'Email does not exist',
+            ], 400);
+        }
+
+        if (Hash::check($request->input('password'), $user->password)) {
+            return response()->json([
+                'token' => $this->jwt($user, 200)
+            ]);
+        }
+
+        return response()->json(['error' => 'Email or password is wrong'], 400);
     }
 }
