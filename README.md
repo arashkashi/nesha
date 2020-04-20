@@ -6,3 +6,14 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 
 # To Create a new (user) table
 ```php artisan make:migration create_users_table --create=users```
+
+# MySql version 8 Auth problem
+when creating a user use the following
+```
+CREATE USER 'ohdear_ci'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ohdear_secret';
+GRANT ALL PRIVILEGES ON ohdear_ci.* TO 'ohdear_ci'@'localhost';
+```
+For an already created user use
+```
+ALTER USER 'ohdear_ci'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ohdear_secret';
+```
