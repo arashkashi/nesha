@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\User;
 use Illuminate\Support\Facades\Auth;
-use  App\User;
 
 class UserController extends Controller
 {
@@ -34,7 +35,7 @@ class UserController extends Controller
      */
     public function allUsers()
     {
-         return $router->app->version();;//response()->json(['users' =>  User::all()], 200);
+         return response()->json(['users' =>  User::all()], 200);
     }
 
     /**
@@ -55,5 +56,4 @@ class UserController extends Controller
         }
 
     }
-
 }

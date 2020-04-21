@@ -72,17 +72,21 @@ $app->configure('app');
 |
 */
 
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
-
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+$app->middleware([
+    'example.middleware' => App\Http\Middleware\ExampleMiddleware::class
+]);
 
 $app->routeMiddleware([
-    'jwt.auth' => App\Http\Middleware\JWTMiddleware::class,
+    'auth' => App\Http\Middleware\Authenticate::class,
 ]);
+
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class
+ ]);
+
+// $app->routeMiddleware([
+//     'jwt.auth' => App\Http\Middleware\JWTMiddleware::class,
+// ]);
 
 
 /*
@@ -97,7 +101,7 @@ $app->routeMiddleware([
 */
 
 // $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 

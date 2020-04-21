@@ -24,7 +24,7 @@ class AuthController extends Controller
     protected function jwt(User $user) {
         $payload = [
             'iss' => 'nesha-jwt',
-            'sub' => $user->uuid,
+            'sub' => $user->id,
             'iat' => time(),
             'exp' => time() + 60*60
         ];
@@ -74,7 +74,8 @@ class AuthController extends Controller
 
         if (Hash::check($request->input('password'), $user->password)) {
             return response()->json([
-                'token' => $this->jwt($user, 200)
+                'api_token' => $this->jwt($user, 200),
+                'user' => $user
             ]);
         }
 

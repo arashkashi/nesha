@@ -4,6 +4,11 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
+use Firebase\JWT\JWT;
+use Firebase\JWT\ExpiredException;
+use Illuminate\Http\Request;
+
+use App\User;
 
 class Authenticate
 {
@@ -35,9 +40,25 @@ class Authenticate
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if ($this->auth->guard($guard)->guest()) {
-            return response('Unauthorized.', 401);
+        try {
+            $token = $request->input('api_token');
+        } catch(exception $e) {
+            return response()->json([
+                'error' => 'Token not provided'
+            , 401]); 
+        } 
+
+        if (!$token) {
+            return response()->json([
+                'error' => 'Token not provided'
+            , 401]);
         }
+
+
+
+        $user = User::getUserFrom($token);
+
+        $request->auth = $user;
 
         return $next($request);
     }
