@@ -6,6 +6,8 @@ use Closure;
 use Firebase\JWT\JWT;
 use Firebase\JWT\ExpiredException;
 
+use App\User;
+
 class JWTMiddleware
 {
     /**
@@ -18,7 +20,7 @@ class JWTMiddleware
     public function handle($request, Closure $next)
     {
         return $next($request);
-        $token = $request->inpit('token');
+        $token = $request->input('api_token');
 
         if (!token) {
             return response()->json([
