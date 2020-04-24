@@ -1,0 +1,36 @@
+<h3>Register New User</h3>
+
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+
+  <div>
+    <label for="name">
+      tr_ Full Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label for="username">
+      tr_ username
+    </label>
+    <input id="username" type="text" formControlName="username">
+  </div>
+
+  <div>
+    <label for="password">
+      tr_ Password
+    </label>
+    <input id="password" type="text" formControlName="password">
+  </div>
+
+  <div>
+    <label for="confirm_password">
+      tr_ Confirm Password
+    </label>
+    <input id="confirm_password" type="text" formControlName="confirm_password">
+  </div>
+
+  <button class="button" type="submit">Register</button>
+
+</form>
