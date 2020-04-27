@@ -1,7 +1,7 @@
-<h3>Register New User</h3>
+<h3 class="col-container">Register New User</h3>
 
 
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+<form class="col-container" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
 
   <div>
     <label for="name">
@@ -31,10 +31,5 @@
     <input id="confirm_password" type="password" autocomplete="new-password" formControlName="confirm_password">
   </div>
 
-  <p>
-    Form Status: {{ registerForm.status }}
-  </p>
-  <button class="button" type="submit" >Register</button>
-  <p>aaaaa {{environment.production}}</p>
-
+  <button class="button"  type="submit" *ngIf="registerForm.status=='VALID'">Register</button>
 </form>

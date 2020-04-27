@@ -12,9 +12,15 @@
     margin: 0;
   }
   
-  .container {
+  .row-container {
     display: flex;
     flex-direction: row;
+  }
+
+  .col-container {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
   }
   
   router-outlet + *  {
@@ -113,6 +119,13 @@
     padding: 16px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .center-flex {
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
   }
