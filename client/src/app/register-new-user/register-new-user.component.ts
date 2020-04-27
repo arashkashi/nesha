@@ -6,7 +6,9 @@
 
 
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder  } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { environment } from './../../environments/environment';
+
 
 
 @Component({
@@ -15,16 +17,22 @@ import { FormBuilder  } from '@angular/forms';
   styleUrls: ['./register-new-user.component.css']
 })
 export class RegisterNewUserComponent implements OnInit {
-  checkoutForm;
+  registerForm;
+  environment = environment;
 
   constructor(
     private formBuilder: FormBuilder,
   ) {
-    this.checkoutForm = this.formBuilder.group({
-      name: '',
-      password: '',
-      confirm_password: ''
+    this.registerForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
+      password: ['', Validators.required],
+      confirm_password: ['', Validators.required]
     });
+  }
+
+  isFormStatusValid() {
+    return this.registerForm.status == 'INVALID'
   }
 
   ngOnInit() {
@@ -33,7 +41,7 @@ export class RegisterNewUserComponent implements OnInit {
 
   onSubmit(customerData) {
     // Process checkout data here
-    this.checkoutForm.reset();
+    this.registerForm.reset();
 
     console.warn('Your order has been submitted', customerData);
   }

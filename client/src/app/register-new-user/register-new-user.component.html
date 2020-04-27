@@ -1,7 +1,7 @@
 <h3>Register New User</h3>
 
 
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
 
   <div>
     <label for="name">
@@ -11,26 +11,30 @@
   </div>
 
   <div>
-    <label for="username">
-      tr_ username
+    <label for="email">
+      tr_ Email
     </label>
-    <input id="username" type="text" formControlName="username">
+    <input id="email" type="username" autocomplete="username" formControlName="email">
   </div>
 
   <div>
     <label for="password">
       tr_ Password
     </label>
-    <input id="password" type="text" formControlName="password">
+    <input id="password" type="password" autocomplete="new-password" formControlName="password">
   </div>
 
   <div>
     <label for="confirm_password">
       tr_ Confirm Password
     </label>
-    <input id="confirm_password" type="text" formControlName="confirm_password">
+    <input id="confirm_password" type="password" autocomplete="new-password" formControlName="confirm_password">
   </div>
 
-  <button class="button" type="submit">Register</button>
+  <p>
+    Form Status: {{ registerForm.status }}
+  </p>
+  <button class="button" type="submit" >Register</button>
+  <p>aaaaa {{environment.production}}</p>
 
 </form>
