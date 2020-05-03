@@ -3,6 +3,7 @@ import { environment } from './../../environments/environment';
 import { LoginService } from '../login.service';
 import { Router } from "@angular/router";
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { LocalStorageService } from '../local-storage.service';
 
 
 
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService,
               private router: Router,
               private formBuilder: FormBuilder,
+              private localStorageService: LocalStorageService
               ) {
                 this.loginForm = this.formBuilder.group({
                   email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
@@ -35,10 +37,12 @@ export class LoginComponent implements OnInit {
     var user = login_response['user']
     var user_id = user['uuid']
 
-    this.loginService.setUserLocally(user)
-    this.loginService.setTokenLocally(api_token)
+    this.localStorageService.setUserLocally(user)
+    this.localStorageService.setTokenLocally(api_token)
 
-    this.router.navigate(['users/${user_id}']);
+    this.error = 'users/' + user_id
+
+    this.router.navigate(['users/' + user_id]);
   }
 
   onSubmit(customerData) {

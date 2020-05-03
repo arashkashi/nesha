@@ -28,7 +28,7 @@ $router->group(['prefix' => 'api'/*, 'middleware' => 'jwt.auth'*/], function () 
 
     // Matches "/api/users/1 
     //get one user by id
-    $router->get('users/{id}', 'UserController@singleUser');
+    $router->post('users/{id}', 'UserController@singleUser');
 
     // Matches "/api/users
     $router->post('users', 'UserController@allUsers');

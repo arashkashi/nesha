@@ -54,6 +54,8 @@ class Authenticate
             , 401]);
         }
 
+
+
         $user = User::getUserFrom($token);
 
         $request->auth = $user;
