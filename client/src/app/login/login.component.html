@@ -19,7 +19,6 @@
     <input id="password" type="password" autocomplete="new-password" formControlName="password">
   </div>
 
-  <!-- <p *ngIf="error">{{res}}</p> -->
-  <p>{{error}}</p>
+  <p *ngIf="error">{{error}}</p>
   <button class="button"  type="submit" *ngIf="loginForm.status=='VALID'">TR_ Login</button>
 </form>

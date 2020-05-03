@@ -38,8 +38,6 @@ export class UserProfileComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.user_id = params.get('userId');
 
-      this.res = this.user_id
-
       this.localStore.locallyStoredTokenObserver().subscribe( (token) => {
         var body = {"api_token": token, "data": {} }
         

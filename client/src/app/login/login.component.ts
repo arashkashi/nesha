@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
 
     this.loginService.loginObservable(customerData).subscribe({
       next: res => this.onSuccessfulLogin(res),
-      error: error => this.error = JSON.stringify(error)
+      error: error => this.error = JSON.stringify(error['error'])
     }
   )
   }
