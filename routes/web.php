@@ -17,12 +17,11 @@ $router->get('/', function () use ($router) {
 
 $router->post('register', 'AuthController@register');
 
+$router->post('login', 'AuthController@login');
+
 // API route group
 $router->group(['prefix' => 'api'/*, 'middleware' => 'jwt.auth'*/], function () use ($router) {
     // Matches "/api/register
-   
-     // Matches "/api/login
-    $router->post('login', 'AuthController@login');
 
     // Matches "/api/profile
     $router->post('profile', 'UserController@profile');

@@ -31,6 +31,6 @@
     </label>
     <input id="confirm_password" type="password" autocomplete="new-password" formControlName="password_confirmation">
   </div>
-  <p>{{res}}</p>
+  <p *ngIf="environment.debug==true">{{res}}</p>
   <button class="button"  type="submit" *ngIf="registerForm.status=='VALID'">Register</button>
 </form>
