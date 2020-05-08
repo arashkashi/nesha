@@ -39,12 +39,7 @@ export class UserProfileComponent implements OnInit {
       this.user_id = params.get('userId');
 
       this.localStore.locallyStoredTokenObserver().subscribe( (token) => {
-        // var body = {"api_token": token, "data": {} }
         
-        // this.http.post(environment.api_endpoint + "/api/users/" + this.user_id, body).subscribe({
-        //     next: res => this.onFetchingUserSuccess(res['user']),
-        //     error: error => this.error = JSON.stringify(error)
-        //   })
         this.apiService.dispatchPostRequest("/api/users/" + this.user_id, {}).then(
           res => {
             this.onFetchingUserSuccess(res['user']);

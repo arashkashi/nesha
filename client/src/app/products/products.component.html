@@ -3,11 +3,24 @@
 </style>
 
 <div class="card-container">
+    <p *ngIf="error">{{error}}</p>
+
     <div class="card card-small" (click)="onAddNewProductClick()" tabindex="0">
         <span>Add New Product</span>
     </div>
-    
+
     <div class="card card-small" (click)="onRefreshClick()" tabindex="0">
         <span>Refresh List</span>
     </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped w-auto">
+        <tbody>
+            <tr *ngFor="let p of products">
+                <td>{{ p.name }}</td>
+                <td *ngFor="let item of listSortedPropertyKeyValues(p)">{{ item }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
