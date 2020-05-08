@@ -28,9 +28,9 @@ export class ProductsComponent implements OnInit {
   listSortedPropertyKeyValues(product) {
     var json = JSON.parse(product['properties']);
     const keys = Object.keys(json).sort((one, two) => (one > two ? 1 : -1)); 
-    var result: Array<String> = []
+    var result: Array<[String, String]> = []
     for (let key of keys) {
-      result.push(key+ ":"+ String(json[key]))
+      result.push([key,String(json[key])])
     } 
     return result
   }

@@ -18,8 +18,8 @@
     <table class="table table-striped w-auto">
         <tbody>
             <tr *ngFor="let p of products">
-                <td>{{ p.name }}</td>
-                <td *ngFor="let item of listSortedPropertyKeyValues(p)">{{ item }}</td>
+                <td><strong>{{ p.name }}</strong></td>
+                <td *ngFor="let item of listSortedPropertyKeyValues(p)"><strong>{{ item[0] }}: </strong>{{ item[1] }}</td>
             </tr>
         </tbody>
     </table>
