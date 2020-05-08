@@ -4,13 +4,17 @@ import { RegisterNewUserComponent } from './register-new-user/register-new-user.
 import { LoginComponent } from './login/login.component';
 import { UserProfileComponent} from './user-profile/user-profile.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { ProductsComponent } from './products/products.component';
+import { AddNewProductComponent } from './add-new-product/add-new-product.component';
 
 
 const routes: Routes = [
   { path: 'register', component: RegisterNewUserComponent },
   { path: 'login', component: LoginComponent },
   { path: 'users/:userId', component: UserProfileComponent},
-  { path: 'main-menu', component: MainMenuComponent}
+  { path: 'main-menu', component: MainMenuComponent},
+  { path: 'products', component: ProductsComponent},
+  { path: 'products/add-new-product', component: AddNewProductComponent} 
 ];
 
 @NgModule({

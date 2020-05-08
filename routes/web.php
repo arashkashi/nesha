@@ -20,17 +20,15 @@ $router->post('register', 'AuthController@register');
 $router->post('login', 'AuthController@login');
 
 // API route group
-$router->group(['prefix' => 'api'/*, 'middleware' => 'jwt.auth'*/], function () use ($router) {
-    // Matches "/api/register
+$router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
 
-    // Matches "/api/profile
     $router->post('profile', 'UserController@profile');
 
-    // Matches "/api/users/1 
-    //get one user by id
     $router->post('users/{id}', 'UserController@singleUser');
 
-    // Matches "/api/users
     $router->post('users', 'UserController@allUsers');
-    
+
+    $router->post('products', 'ProductController@allProducts');
+
+    $router->post('products/addNewProduct', 'ProductController@addNewProductWith');
 });

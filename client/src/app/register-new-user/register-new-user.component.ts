@@ -7,9 +7,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
-import { environment } from './../../environments/environment';
 import { ApiRequestService } from '../api-request.service';
-import {LoginService} from '../login.service';
+import { LoginService} from '../login.service';
 import { Router } from "@angular/router";
 
 
@@ -21,13 +20,11 @@ import { Router } from "@angular/router";
 })
 export class RegisterNewUserComponent implements OnInit {
   registerForm;
-  environment = environment;
 
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiRequestService,
-    private router: Router,
-    private loginService: LoginService
+    private router: Router
   ) {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -52,9 +49,10 @@ export class RegisterNewUserComponent implements OnInit {
   onSubmit(customerData) {
     // Process checkout data here
     this.registerForm.reset();
-    this.apiService.dispatchPostRequest("/register", customerData, false).subscribe({
-      next: res => this.router.navigate(['login']),
-      error: error => this.error = JSON.stringify(error['error'])
+    this.apiService.dispatchPostRequest("/register", customerData, false).then(res =>{
+      this.router.navigate(['login']);
+    }, msg => {
+      this.error = JSON.stringify(msg)
     })
   }
 }

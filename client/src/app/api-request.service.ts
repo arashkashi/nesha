@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { LoginService } from './login.service';
 import { LocalStorageService } from './local-storage.service';
 
 
@@ -15,15 +14,18 @@ export class ApiRequestService {
   constructor(private http: HttpClient,
               private localStorageService: LocalStorageService) { }
 
-  dispatchPostRequest(path, data, requiresAuth = true) {
+  async dispatchPostRequest(path, data, requiresAuth = true) {
 
     if (requiresAuth) {
-      this.localStorageService.locallyStoredTokenObserver().subscribe( (token) => {
-        var body = {"api_token": token, "data": data }
-        return this.http.post(environment.api_endpoint + path, data)
-      })
+
+      const token = await this.localStorageService.locallyStoredTokenObserver().toPromise()
+      
+      var dataWithToken = data;
+      dataWithToken['api_token'] = token;
+
+      return this.http.post(environment.api_endpoint + path, data).toPromise();
     } else {
-      return this.http.post(environment.api_endpoint + path, data)
+      return this.http.post(environment.api_endpoint + path, data).toPromise()
     }
   }
 }

@@ -11,6 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { ProductsComponent } from './products/products.component';
+import { AddNewProductComponent } from './add-new-product/add-new-product.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
     RegisterNewUserComponent,
     LoginComponent,
     UserProfileComponent,
-    MainMenuComponent
+    MainMenuComponent,
+    ProductsComponent,
+    AddNewProductComponent
   ],
   imports: [
     BrowserModule,

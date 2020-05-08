@@ -72,9 +72,9 @@ $app->configure('app');
 |
 */
 
-$app->middleware([
-    'example.middleware' => App\Http\Middleware\ExampleMiddleware::class
-]);
+// $app->middleware([
+//     'example.middleware' => App\Http\Middleware\ExampleMiddleware::class
+// ]);
 
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,

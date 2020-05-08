@@ -47,10 +47,12 @@ export class LoginComponent implements OnInit {
 
   onSubmit(customerData) {
 
-    this.loginService.loginObservable(customerData).subscribe({
-      next: res => this.onSuccessfulLogin(res),
-      error: error => this.error = JSON.stringify(error['error'])
+    this.loginService.loginObservable(customerData).then( res => {
+      this.onSuccessfulLogin(res);
+    },
+    msg => {
+      this.error = JSON.stringify(msg)
     }
-  )
+    )
   }
 }
