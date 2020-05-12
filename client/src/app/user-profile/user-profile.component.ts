@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiRequestService } from '../api-request.service';
-import { LoginService } from '../login.service';
 import { LocalStorageService} from '../local-storage.service';
-import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
 
 
 
@@ -17,9 +14,7 @@ export class UserProfileComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private apiService: ApiRequestService,
-    private loginService: LoginService,
-    private localStore: LocalStorageService,
-    private http: HttpClient) { }
+    private localStore: LocalStorageService) { }
 
 
   user_id;

@@ -12,14 +12,25 @@
     <div class="card card-small" (click)="onRefreshClick()" tabindex="0">
         <span>Refresh List</span>
     </div>
+
+    <div class="card card-small" (click)="onEditModeClick()" tabindex="0">
+        <span *ngIf="isEditModeEnabled">Disable Edit</span>
+        <span *ngIf="isEditModeEnabled == false">Enable Edit</span>
+    </div>
 </div>
 
 <div class="table-responsive">
     <table class="table table-striped w-auto">
         <tbody>
             <tr *ngFor="let p of products">
+                <td *ngIf="isEditModeEnabled">
+                    <mat-icon class="warning"  (click)="onDeleteProductClick(p)">delete</mat-icon>
+                </td>
+                <td *ngIf="isEditModeEnabled">
+                    <mat-icon (click)="onEditProductClick(p)">edit</mat-icon>
+                </td>
                 <td><strong>{{ p.name }}</strong></td>
-                <td *ngFor="let item of listSortedPropertyKeyValues(p)"><strong>{{ item[0] }}: </strong>{{ item[1] }}</td>
+                <td *ngFor="let item of listSortedPropertyKeyValues(p)"><small>{{ item[0] }}: </small><strong>{{ item[1] }}</strong></td>
             </tr>
         </tbody>
     </table>

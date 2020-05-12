@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { ApiRequestService } from '../api-request.service';
+import { config } from 'rxjs';
+
 
 
 @Component({
@@ -43,6 +45,31 @@ export class ProductsComponent implements OnInit {
       msg => {
         this.error = JSON.stringify(msg)
       })
+  }
+
+  isEditModeEnabled = false
+
+  onEditModeClick() {
+    this.isEditModeEnabled = !this.isEditModeEnabled
+  }
+
+  onEditProductClick(p) {
+    var id = p['id']
+    this.router.navigate(['products/edit/' + id])
+  }
+
+  onDeleteProductClick(product) {
+    var id = product['id']
+    if (confirm("Should delete " + product['name'] + " ?")) {
+      this.api.dispatchPostRequest("/api/products/delete/" + id, {}).then(
+        res => {
+          this.onRefreshClick()
+        },
+        msg => {
+          this.error = JSON.stringify(msg)
+        }
+      )
+    }
   }
 
   onAddNewProductClick() {

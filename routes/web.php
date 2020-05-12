@@ -28,7 +28,13 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
 
     $router->post('users', 'UserController@allUsers');
 
-    $router->post('products', 'ProductController@allProducts');
-
     $router->post('products/addNewProduct', 'ProductController@addNewProductWith');
+
+    $router->post('products/delete/{id}', 'ProductController@deleteProduct');
+
+    $router->post('products/update', 'ProductController@updateProduct');
+
+    $router->post('products/{id}', 'ProductController@singleProduct');
+
+    $router->post('products', 'ProductController@allProducts');
 });

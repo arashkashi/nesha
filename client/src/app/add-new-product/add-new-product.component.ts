@@ -3,6 +3,7 @@ import { FormBuilder, ValidationErrors, Validators, FormControl, ValidatorFn, Ab
 import { environment } from './../../environments/environment';
 import { ApiRequestService } from '../api-request.service';
 import { Router } from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -21,13 +22,16 @@ export class AddNewProductComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiRequestService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       properties: new FormControl('', [this.jsonValidator(), Validators.required])
     });
   }
+  enteredName;
+  enteredProperties;
 
   jsonValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -45,8 +49,24 @@ export class AddNewProductComponent implements OnInit {
     return this.form.status == 'INVALID'
   }
 
-  ngOnInit() {
+  product_id;
 
+  onFetchingProductSuccess(product) {
+    this.enteredName = product['name']
+    this.enteredProperties = product['properties']
+  }
+
+  ngOnInit(): void {
+
+    this.route.paramMap.subscribe(params => {
+      this.product_id = params.get('productId');
+        
+        this.apiService.dispatchPostRequest("/api/products/" + this.product_id, {}).then(
+          res => {
+            this.onFetchingProductSuccess(res['product']);
+        },
+          msg => {})
+    });
   }
 
   // To convert json to string
@@ -58,16 +78,32 @@ export class AddNewProductComponent implements OnInit {
     // Process checkout data here
     this.form.reset();
 
-    this.apiService.dispatchPostRequest("/api/products/addNewProduct", productData).then( 
-      res => {
-        if (!res['error']) {
+    if (this.product_id) {
+      productData["id"] = this.product_id;
+      this.apiService.dispatchPostRequest("/api/products/update", {'product':productData}).then(
+        res => {
+          alert(JSON.stringify(res))
           this.router.navigate(['products'])
-        } else {
-          this.error = JSON.stringify(res)
+        },
+        msg => {
+          this.error = JSON.stringify(msg)
         }
-    },
-      msg => {
-        this.error = JSON.stringify(msg)
-    })
+      )
+      return;
+
+    } else {
+
+      this.apiService.dispatchPostRequest("/api/products/addNewProduct", productData).then( 
+        res => {
+          if (!res['error']) {
+            this.router.navigate(['products'])
+          } else {
+            this.error = JSON.stringify(res)
+          }
+      },
+        msg => {
+          this.error = JSON.stringify(msg)
+      })
+    }
   }
 }

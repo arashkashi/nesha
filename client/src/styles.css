@@ -102,8 +102,8 @@ svg.material-icons:not(:last-child) {
 }
 
 .card.card-small {
-  /* height: 16px;
-  width: 168px; */
+  height: 16px;
+  width: 168px;
 }
 
 .card-container .card:not(.highlight-card) {
@@ -117,6 +117,13 @@ svg.material-icons:not(:last-child) {
 
 .card-container .card:not(.highlight-card):hover .material-icons path {
   fill: rgb(105, 103, 103);
+}
+
+.warning {
+  color: red;
+}
+.warning svg {
+  fill: red;
 }
 
 .card.highlight-card {
@@ -445,3 +452,5 @@ svg#clouds {
   Use of this source code is governed by an MIT-style license that
   can be found in the LICENSE file at http://angular.io/license
   */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

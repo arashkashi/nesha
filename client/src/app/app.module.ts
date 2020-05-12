@@ -13,6 +13,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { ProductsComponent } from './products/products.component';
 import { AddNewProductComponent } from './add-new-product/add-new-product.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { AddNewProductComponent } from './add-new-product/add-new-product.compon
     UserProfileComponent,
     MainMenuComponent,
     ProductsComponent,
-    AddNewProductComponent
+    AddNewProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +33,7 @@ import { AddNewProductComponent } from './add-new-product/add-new-product.compon
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
