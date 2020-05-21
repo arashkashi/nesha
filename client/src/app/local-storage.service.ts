@@ -1,31 +1,38 @@
 import { Injectable } from '@angular/core';
 import { StorageMap } from '@ngx-pwa/local-storage';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
 
-  kUser = "userKey";
-  kToken = "tokenKey";
+  kToken = "kWeather";
+  kUserId = "kUserID";
 
   constructor(
-    private storage: StorageMap
+    private storage: StorageMap,
+    private cookie: CookieService
     ) { }
 
-  setUserLocally(user) {
-    this.storage.set(this.kUser, user).subscribe(() => {});
-  }
-
-  locallyStoredUserObserver() {
-    return this.storage.get(this.kUser)
-  }
-
   setTokenLocally(token) {
-    this.storage.set(this.kToken, token).subscribe(() => {});
+    this.cookie.set(this.kToken, token)
   }
 
-  locallyStoredTokenObserver() {
-    return this.storage.get(this.kToken)
+  locallyStoredToken() {
+    return this.cookie.get(this.kToken)
+  }
+
+  resetLocalStorage() {
+    this.cookie.set(this.kToken, null)
+    this.cookie.set(this.kUserId, null)
+  }
+
+  setLoggedInUserId(userId) {
+    this.cookie.set(this.kUserId, userId)
+  }
+
+  loggedInUserId() {
+    return this.cookie.get(this.kUserId)
   }
 }

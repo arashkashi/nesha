@@ -82,7 +82,6 @@ export class AddNewProductComponent implements OnInit {
       productData["id"] = this.product_id;
       this.apiService.dispatchPostRequest("/api/products/update", {'product':productData}).then(
         res => {
-          alert(JSON.stringify(res))
           this.router.navigate(['products'])
         },
         msg => {

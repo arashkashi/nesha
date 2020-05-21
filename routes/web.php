@@ -19,6 +19,8 @@ $router->post('register', 'AuthController@register');
 
 $router->post('login', 'AuthController@login');
 
+$router->post('/php_ini/{id}', 'Controller@php_ini');
+
 // API route group
 $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
 
@@ -37,4 +39,9 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     $router->post('products/{id}', 'ProductController@singleProduct');
 
     $router->post('products', 'ProductController@allProducts');
+
+	$router->post('files/save', 'FilesController@saveFile');
+	// $router->post('list', 'FilesController@getFileList');
+	$router->get('files/view-media/{filename}', 'FilesController@viewMediaFile');
+	$router->get('files/delete/{filename}', 'FilesController@deleteFile');
 });

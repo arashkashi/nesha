@@ -41,7 +41,7 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
         try {
-            $token = $request->input('api_token');
+            $token = $request->header('bearer', null);
         } catch(exception $e) {
             return response()->json([
                 'error' => 'Token not provided'

@@ -20,6 +20,7 @@ export class ProductsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.onRefreshClick()
   }
 
   onAllProducts(products) {
@@ -70,6 +71,10 @@ export class ProductsComponent implements OnInit {
         }
       )
     }
+  }
+  onAddProductImageClick(product) {
+    const foreigh_key = product.id
+    this.router.navigate(['files/add/', {foreignKey: product.id, isPublic: "true"}])
   }
 
   onAddNewProductClick() {

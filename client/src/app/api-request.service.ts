@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { LocalStorageService } from './local-storage.service';
 
@@ -14,18 +14,28 @@ export class ApiRequestService {
   constructor(private http: HttpClient,
               private localStorageService: LocalStorageService) { }
 
-  async dispatchPostRequest(path, data, requiresAuth = true) {
+    dispatchPostRequest(path, data, requiresAuth = true) {
 
     if (requiresAuth) {
 
-      const token = await this.localStorageService.locallyStoredTokenObserver().toPromise()
-      
-      var dataWithToken = data;
-      dataWithToken['api_token'] = token;
+      const token = this.localStorageService.locallyStoredToken()
 
-      return this.http.post(environment.api_endpoint + path, data).toPromise();
+      const headers = new HttpHeaders({"bearer": token});
+
+      return this.http.post(environment.api_endpoint + path, data, {headers}).toPromise();
     } else {
       return this.http.post(environment.api_endpoint + path, data).toPromise()
     }
+  }
+
+  dispatchPostFormDataRequest(path, formData) {
+
+    const token = this.localStorageService.locallyStoredToken()
+
+    let headers = new HttpHeaders({"bearer": token});
+    headers.set('bearer', token)
+    headers.set('Content-Type', 'formData')
+
+    return this.http.post(environment.api_endpoint + path, formData, {headers}).toPromise();
   }
 }

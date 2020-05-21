@@ -29,6 +29,9 @@
                 <td *ngIf="isEditModeEnabled">
                     <mat-icon (click)="onEditProductClick(p)">edit</mat-icon>
                 </td>
+                <td *ngIf="isEditModeEnabled">
+                    <mat-icon (click)="onAddProductImageClick(p)">image</mat-icon>
+                </td>
                 <td><strong>{{ p.name }}</strong></td>
                 <td *ngFor="let item of listSortedPropertyKeyValues(p)"><small>{{ item[0] }}: </small><strong>{{ item[1] }}</strong></td>
             </tr>

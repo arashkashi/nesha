@@ -14,6 +14,9 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { ProductsComponent } from './products/products.component';
 import { AddNewProductComponent } from './add-new-product/add-new-product.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { FilesComponent } from './files/files.component';
 
 
 @NgModule({
@@ -26,6 +29,7 @@ import { MatIconModule } from '@angular/material/icon';
     MainMenuComponent,
     ProductsComponent,
     AddNewProductComponent,
+    FilesComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,9 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

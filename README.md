@@ -121,6 +121,9 @@ In order to migrate the database, i.e. creating the table etc. we need to run ar
 `$ php artisan migrate`
 
 
+## Finding where the php.ini is
+'''php -i | grep php.ini'''
+
 
 
 

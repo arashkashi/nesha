@@ -37,8 +37,8 @@ export class LoginComponent implements OnInit {
     var user = login_response['user']
     var user_id = user['id']
 
-    this.localStorageService.setUserLocally(user)
-    this.localStorageService.setTokenLocally(api_token)
+    this.localStorageService.setTokenLocally(api_token);
+    this.localStorageService.setLoggedInUserId(user_id);
 
     this.error = 'users/' + user_id
 
@@ -47,7 +47,8 @@ export class LoginComponent implements OnInit {
 
   onSubmit(customerData) {
 
-    this.loginService.loginObservable(customerData).then( res => {
+    this.loginService.loginObservable(customerData).then( 
+      res => {
       this.onSuccessfulLogin(res);
     },
     msg => {

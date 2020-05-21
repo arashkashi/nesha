@@ -32,8 +32,6 @@ export class UserProfileComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       this.user_id = params.get('userId');
-
-      this.localStore.locallyStoredTokenObserver().subscribe( (token) => {
         
         this.apiService.dispatchPostRequest("/api/users/" + this.user_id, {}).then(
           res => {
@@ -41,8 +39,8 @@ export class UserProfileComponent implements OnInit {
         },
           msg => {
             this.error = JSON.stringify(msg)
+            alert(JSON.stringify(msg))
           })
       })
-    });
   }
 }
