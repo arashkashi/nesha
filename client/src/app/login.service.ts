@@ -3,6 +3,7 @@ import { ApiRequestService } from './api-request.service';
 import { LocalStorageService } from './local-storage.service';
 import { Router } from "@angular/router";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,7 +28,7 @@ export class LoginService {
   // to be seeing the page and initiates a process.
   // upon this the user is alereted and immediately refered to the login page.
   onAuthError() {
-    alert("You should be logged in at this point!");
     this.logout()
+    this.router.navigate(['login'])
   }
 }

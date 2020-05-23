@@ -41,25 +41,19 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
         try {
-            $token = $request->header('bearer', null);
-        } catch(exception $e) {
-            return response()->json([
-                'error' => 'Token not provided'
-            , 401]); 
+            $token = $request->header('bearer', "invalid-default-token");
+
+            $cred = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
+            $request->user_id = $cred->sub;
+
+            return $next($request);
+        } catch (ExpiredException $e) {
+
+            return response()->json(['error' => 'provided token is expired'], 401);
         } 
+        catch ( \Exception $e) {
 
-        if (!$token) {
-            return response()->json([
-                'error' => 'Token not provided'
-            , 401]);
+            return response()->json(['error' => 'error while decoding token'], 401);
         }
-
-
-
-        $user = User::getUserFrom($token);
-
-        $request->auth = $user;
-
-        return $next($request);
     }
 }

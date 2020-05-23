@@ -19,8 +19,9 @@ class JWTMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
         $token = $request->input('api_token');
+
+        return response()->json(['error' => $token], 401);
 
         if (!token) {
             return response()->json([
@@ -32,11 +33,11 @@ class JWTMiddleware
             $cred = JWT::decode($token, env('JWT_SECRET'), [HS256]);
         } catch (ExpiredException $e) 
         {
-            return response()->json(['error' => 'provided token is expired'], 400);
+            return response()->json(['error' => 'provided token is expired'], 401);
 
         } catch (exception $e) 
         {
-            return response()->json(['error' => 'error while decoding token'], 400);
+            return response()->json(['error' => 'error while decoding token'], 401);
         }
 
         $user = User::find($cred->sub);

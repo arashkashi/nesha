@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { ApiRequestService } from '../api-request.service';
-import { config } from 'rxjs';
 
 
 

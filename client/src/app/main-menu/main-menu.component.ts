@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { LoginService} from "../login.service";
 
 @Component({
   selector: 'app-main-menu',
@@ -9,7 +10,8 @@ import { Router } from "@angular/router";
 export class MainMenuComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private loginService: LoginService
     ) { }
 
   ngOnInit(): void {
@@ -20,7 +22,6 @@ export class MainMenuComponent implements OnInit {
   }
 
   onLogoutClick() {
-    
+    this.loginService.logout()
   }
-
 }

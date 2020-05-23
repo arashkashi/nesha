@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiRequestService } from '../api-request.service';
-import { LocalStorageService} from '../local-storage.service';
 
 
 
@@ -12,9 +11,10 @@ import { LocalStorageService} from '../local-storage.service';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,
-    private apiService: ApiRequestService,
-    private localStore: LocalStorageService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: ApiRequestService
+    ) { }
 
 
   user_id;
@@ -39,7 +39,7 @@ export class UserProfileComponent implements OnInit {
         },
           msg => {
             this.error = JSON.stringify(msg)
-            alert(JSON.stringify(msg))
+            alert(JSON.stringify(msg['error']))
           })
       })
   }

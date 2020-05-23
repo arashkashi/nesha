@@ -10,6 +10,7 @@ use Laravel\Lumen\Auth\Authorizable;
 use App\Traits\UsesUuid;
 use Firebase\JWT\JWT;
 use Firebase\JWT\ExpiredException;
+use Firebase\JWT\UnexpectedValueException;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
@@ -41,24 +42,4 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $guarded = [
         'id',
     ];
-
-    public static function getUserFrom($token) {
-
-        try {
-
-            $cred = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
-        } 
-        catch (ExpiredException $e) {
-
-            return response()->json(['error' => 'provided token is expired'], 400);
-        } 
-        catch (exception $e) {
-
-            return response()->json(['error' => 'error while decoding token'], 400);
-        }
-
-        $user = User::find($cred->sub);
-
-        return $user;
-    }
 }

@@ -29,7 +29,7 @@ import { FilesComponent } from './files/files.component';
     MainMenuComponent,
     ProductsComponent,
     AddNewProductComponent,
-    FilesComponent,
+    FilesComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +39,10 @@ import { FilesComponent } from './files/files.component';
     HttpClientModule,
     MatIconModule,
     MatCardModule,
-    MatProgressBarModule
+    MatProgressBarModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
