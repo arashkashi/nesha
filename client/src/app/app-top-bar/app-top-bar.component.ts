@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from './../../environments/environment';
+import { LocalStorageService } from '../local-storage.service';
 
 
 @Component({
@@ -10,9 +11,17 @@ import { environment } from './../../environments/environment';
 export class AppTopBarComponent implements OnInit {
   env = environment;
 
-  constructor() { }
+  constructor(
+    private storage: LocalStorageService
+  ) { }
 
+  shouldShowMainMenuNavigation = false
   ngOnInit(): void {
+    alert(this.storage.locallyStoredToken())
+    if (this.storage.locallyStoredToken()) {
+      this.shouldShowMainMenuNavigation = true
+    } else {
+      this.shouldShowMainMenuNavigation = false
+    }
   }
-
 }

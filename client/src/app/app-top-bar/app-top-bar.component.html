@@ -1,4 +1,5 @@
-<a [routerLink]="['/login']">
-    <h1>Neshagostar</h1>
+<a *ngIf="shouldShowMainMenuNavigation" [routerLink]="['/main-menu']">
+    <h1> منوی اصلی</h1>
 </a>
-<p style="color: black;">{{env.api_endpoint}}</p>
+
+<!--  <p style="color: black;">{{env.api_endpoint}}</p> -->
