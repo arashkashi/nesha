@@ -4,15 +4,16 @@ services:
     build:
       context: .
       dockerfile: .docker/Dockerfile
-    image: clinet-auth-docker
+    image: nesha
     ports:
       - 8080:2015
+    network_mode: "host"
     volumes:
       - .:/srv/app
-    links:
-      - mysql
     environment:
-      DB_HOST: mysql
-      DB_DATABASE: clinet_db
-      DB_USERNAME: clinet
-      DB_PASSWORD: clinetpassword
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: client
+      DB_USERNAME: client
+      DB_PASSWORD: client
