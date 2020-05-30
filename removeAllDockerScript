@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+docker rm $(docker stop $(docker ps -a -q --filter ancestor=nesha --format="{{.ID}}"))
