@@ -136,8 +136,12 @@ a2dissite 000-default.conf
 a2ensite 001-lumen-api.conf
 '''
 
-
-## how to provision Lumen
+## Deploy how to provision Lumen
 ```https://www.howtoforge.com/tutorial/install-laravel-on-ubuntu-for-apache/```
+
+'''composer update --no-scripts '''
+
+### Composer memory limit issue
+'''php -d memory_limit=-1 `which composer` update'''
 
 
