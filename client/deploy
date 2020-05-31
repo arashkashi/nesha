@@ -16,10 +16,8 @@ mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.old
 cp config/nginx.conf /etc/nginx/nginx.conf
 
 npm install source-map@latest --save
-# ng serve
 # restart server
 sudo systemctl restart nginx
 
 
-echo 'pleaase run ng serve now'
-
+npm run-script ng serve
