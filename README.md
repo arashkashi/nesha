@@ -144,4 +144,10 @@ a2ensite 001-lumen-api.conf
 ### Composer memory limit issue
 '''php -d memory_limit=-1 `which composer` update'''
 
+# Deploy Fron end
+There is a file deploy in the client folder
+There are two angular cli: locall, and global
 
+npm install all the local packages
+to run the local angular cli one should run
+''' npm run-script ng serve '''
