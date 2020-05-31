@@ -151,3 +151,36 @@ There are two angular cli: locall, and global
 npm install all the local packages
 to run the local angular cli one should run
 ''' npm run-script ng serve '''
+
+
+# MYSql
+install
+'''sudo apt-get update
+sudo apt-get install mysql-server
+'''
+
+
+## make it secure
+sudo mysql_secure_installation utility
+
+## allow remote access(not recommanded)
+sudo ufw enable
+sudo ufw allow mysql
+
+
+## Start the service
+'''
+sudo systemctl start mysql
+'''
+
+'''sudo systemctl restart mysql
+'''
+
+## Create a user
+'''
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+'''
+
+'''
+GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost';
+'''
