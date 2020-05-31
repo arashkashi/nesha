@@ -23,7 +23,8 @@ sudo apt-get install php-openssl
 sudo apt-get install php-mbstring
 php artisan migrate
 
-
+chmod -R 775 ./storage
+sudo chgrp -R www-data .
 echo "Make sure to update the env file"
 docker-compose up --build
 
