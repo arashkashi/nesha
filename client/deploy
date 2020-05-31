@@ -8,14 +8,12 @@ sudo ufw app list
 sudo ufw allow 'Nginx HTTP'
 sudo ufw status
 
-rm node_modules/@angular/compiler-cli/ngcc/__ngcc_lock_file__
 # Check if nginx running
 systemctl status nginx
 
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.old
 cp config/nginx.conf /etc/nginx/nginx.conf
 
-npm install source-map@latest --save
 # restart server
 sudo systemctl restart nginx
 
