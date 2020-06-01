@@ -17,6 +17,7 @@ cp config/nginx.conf /etc/nginx/nginx.conf
 # restart server
 sudo systemctl restart nginx
 
+# sometimes not having updated causes build issues
 npm outdated        
 npm update
 npm run-script ng serve
