@@ -19,5 +19,6 @@ npm install source-map@latest --save
 # restart server
 sudo systemctl restart nginx
 
-
+npm outdated        
+npm update
 npm run-script ng serve
