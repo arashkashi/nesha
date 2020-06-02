@@ -25,6 +25,7 @@ php artisan migrate
 
 chmod -R 775 ./storage
 sudo chgrp -R www-data .
+chown -R www-data:www-data .
 echo "Make sure to update the env file"
 docker-compose up --build
 
