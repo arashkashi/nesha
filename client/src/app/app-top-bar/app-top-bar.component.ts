@@ -17,7 +17,6 @@ export class AppTopBarComponent implements OnInit {
 
   shouldShowMainMenuNavigation = false
   ngOnInit(): void {
-    alert(this.storage.locallyStoredToken())
     if (this.storage.locallyStoredToken()) {
       this.shouldShowMainMenuNavigation = true
     } else {

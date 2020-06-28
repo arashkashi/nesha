@@ -30,6 +30,8 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
 
     $router->post('users', 'UserController@allUsers');
 
+    //******
+
     $router->post('products/addNewProduct', 'ProductController@addNewProductWith');
 
     $router->post('products/delete/{id}', 'ProductController@deleteProduct');
@@ -39,6 +41,44 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     $router->post('products/{id}', 'ProductController@singleProduct');
 
     $router->post('products', 'ProductController@allProducts');
+
+    //******
+
+    $router->post('customers/new', 'CustomerController@addNewCustomerWith');
+
+    $router->post('customers/delete/{id}', 'CustomerController@deleteCustomer');
+
+    $router->post('customers/update', 'CustomerController@updateCustomer');
+
+    $router->post('customers/{id}', 'CustomerController@singleCustomer');
+
+    $router->post('customers', 'CustomerController@allCustomers');
+
+    //******
+
+    $router->post('orders/addNewCustomer', 'OrderController@addNewOrderWith');
+
+    $router->post('orders/delete/{id}', 'OrderController@deleteOrder');
+
+    $router->post('orders/update', 'OrderController@updateOrder');
+
+    $router->post('orders/{id}', 'OrderController@singleOrder');
+
+    $router->post('orders', 'OrderController@allOrders');
+
+    //******
+
+    $router->post('Projects/addNewCustomer', 'ProjectController@addNewProjectWith');
+
+    $router->post('Projects/delete/{id}', 'ProjectController@deleteProject');
+
+    $router->post('Projects/update', 'ProjectController@updateProject');
+
+    $router->post('Projects/{id}', 'ProjectController@singleProject');
+
+    $router->post('Projects', 'ProjectController@allProjecs');
+
+    //******
 
 	$router->post('files/save', 'FilesController@saveFile');
 	// $router->post('list', 'FilesController@getFileList');

@@ -1,0 +1,24 @@
+<h1 class="col-container">مشتری جدید</h1>
+
+<br/>
+
+<form class="col-container" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+
+  <div>
+    <label for="name">
+      نام
+    </label>
+    <input id="name" type="text" [(ngModel)]="enteredName" formControlName="name">
+  </div>
+
+  <div>
+    <label for="properties">
+      خصوصیات
+    </label>
+    <input id="properties" type="text" [(ngModel)]="enteredProperties" formControlName="properties">
+  </div>
+
+  <p *ngIf="error">{{error}}</p>
+  <button class="button"  type="submit" *ngIf="form.status=='VALID' && !id">اضافه کردن</button>
+  <button class="button"  type="submit" *ngIf="form.status=='VALID' && id">به روز رسانی</button>
+</form>

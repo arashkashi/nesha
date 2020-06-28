@@ -17,6 +17,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FilesComponent } from './files/files.component';
+import { CustomersComponent } from './customers/customers.component';
+import { NewCustomerComponent } from './new-customer/new-customer.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 
 @NgModule({
@@ -29,7 +32,10 @@ import { FilesComponent } from './files/files.component';
     MainMenuComponent,
     ProductsComponent,
     AddNewProductComponent,
-    FilesComponent
+    FilesComponent,
+    CustomersComponent,
+    NewCustomerComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,

@@ -6,16 +6,12 @@ import { Router } from "@angular/router";
 import { ActivatedRoute } from '@angular/router';
 
 
-
-
 @Component({
-  selector: 'app-add-new-product',
-  templateUrl: './add-new-product.component.html',
-  styleUrls: ['./add-new-product.component.css']
+  selector: 'app-new-customer',
+  templateUrl: './new-customer.component.html',
+  styleUrls: ['./new-customer.component.css']
 })
-
-export class AddNewProductComponent implements OnInit {
-
+export class NewCustomerComponent implements OnInit {
   form;
   environment = environment;
 
@@ -49,37 +45,37 @@ export class AddNewProductComponent implements OnInit {
     return this.form.status == 'INVALID'
   }
 
-  product_id;
+  id;
 
-  onFetchingProductSuccess(product) {
-    this.enteredName = product['name']
-    this.enteredProperties = product['properties']
+  onFetchingItemSuccess(item) {
+    this.enteredName = item['name']
+    this.enteredProperties = item['properties']
   }
 
   ngOnInit(): void {
 
     this.route.paramMap.subscribe(params => {
-      this.product_id = params.get('productId');
+      this.id = params.get('id');
         
-        this.apiService.dispatchPostRequest("/api/products/" + this.product_id, {}).then(
+        this.apiService.dispatchPostRequest("/api/customers/" + this.id, {}).then(
           res => {
-            this.onFetchingProductSuccess(res['product']);
+            this.onFetchingItemSuccess(res['customer']);
         },
           msg => {})
     });
   }
-  
+
   error;
 
-  onSubmit(productData) {
+  onSubmit(data) {
     // Process checkout data here
     this.form.reset();
 
-    if (this.product_id) {
-      productData["id"] = this.product_id;
-      this.apiService.dispatchPostRequest("/api/products/update", {'product':productData}).then(
+    if (this.id) {
+      data["id"] = this.id;
+      this.apiService.dispatchPostRequest("/api/customers/update", {'customer': data}).then(
         res => {
-          this.router.navigate(['products'])
+          this.router.navigate(['customers'])
         },
         msg => {
           this.error = JSON.stringify(msg)
@@ -89,10 +85,10 @@ export class AddNewProductComponent implements OnInit {
 
     } else {
 
-      this.apiService.dispatchPostRequest("/api/products/addNewProduct", productData).then( 
+      this.apiService.dispatchPostRequest("/api/customers/new", data).then( 
         res => {
           if (!res['error']) {
-            this.router.navigate(['products'])
+            this.router.navigate(['customers'])
           } else {
             this.error = JSON.stringify(res)
           }

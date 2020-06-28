@@ -24,4 +24,12 @@ export class MainMenuComponent implements OnInit {
   onLogoutClick() {
     this.loginService.logout()
   }
+
+  onCustomersClick() {
+    this.router.navigate(['customers'])
+  }
+
+  onProjectsClick() {
+    this.router.navigate(['projects'])
+  }
 }
