@@ -56,6 +56,18 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
 
     //******
 
+    $router->post('projects/addNewCustomer', 'ProjectController@addNewProjectWith');
+
+    $router->post('projects/delete/{id}', 'ProjectController@deleteProject');
+
+    $router->post('projects/update', 'ProjectController@updateProject');
+
+    $router->post('projects/{id}', 'ProjectController@singleProject');
+
+    $router->post('projects', 'ProjectController@allProjects');
+
+    //******
+
     $router->post('orders/addNewCustomer', 'OrderController@addNewOrderWith');
 
     $router->post('orders/delete/{id}', 'OrderController@deleteOrder');
@@ -66,17 +78,6 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
 
     $router->post('orders', 'OrderController@allOrders');
 
-    //******
-
-    $router->post('Projects/addNewCustomer', 'ProjectController@addNewProjectWith');
-
-    $router->post('Projects/delete/{id}', 'ProjectController@deleteProject');
-
-    $router->post('Projects/update', 'ProjectController@updateProject');
-
-    $router->post('Projects/{id}', 'ProjectController@singleProject');
-
-    $router->post('Projects', 'ProjectController@allProjecs');
 
     //******
 

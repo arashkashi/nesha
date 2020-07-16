@@ -21,7 +21,7 @@ class Project extends Model implements AuthenticatableContract, AuthorizableCont
      * @var array
      */
     protected $fillable = [
-        'name', 'properties', 'customer_id'
+        'name', 'properties'//, 'customer_id'
     ];
 
     /**

@@ -9,6 +9,8 @@ import { CustomersComponent } from './customers/customers.component';
 import { AddNewProductComponent } from './add-new-product/add-new-product.component';
 import { FilesComponent } from './files/files.component';
 import { NewCustomerComponent } from './new-customer/new-customer.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { NewProjectComponent } from './new-project/new-project.component';
 
 
 const routes: Routes = [
@@ -22,7 +24,9 @@ const routes: Routes = [
   { path: 'files/add', component: FilesComponent },
   { path: 'customers', component: CustomersComponent},
   { path: 'customers/new', component: NewCustomerComponent},
-  { path: 'customers/edit/:id', component: NewCustomerComponent}
+  { path: 'customers/edit/:id', component: NewCustomerComponent},
+  { path: 'projects', component: ProjectsComponent},
+  { path: 'projects/new', component: NewProjectComponent}
 ];
 
 @NgModule({

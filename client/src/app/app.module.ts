@@ -20,6 +20,8 @@ import { FilesComponent } from './files/files.component';
 import { CustomersComponent } from './customers/customers.component';
 import { NewCustomerComponent } from './new-customer/new-customer.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { NewProjectComponent } from './new-project/new-project.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { ProjectsComponent } from './projects/projects.component';
     FilesComponent,
     CustomersComponent,
     NewCustomerComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    NewProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { ProjectsComponent } from './projects/projects.component';
     MatIconModule,
     MatCardModule,
     MatProgressBarModule,
+    FormsModule
   ],
   providers: [
   ],

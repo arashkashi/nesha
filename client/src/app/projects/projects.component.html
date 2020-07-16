@@ -1,1 +1,37 @@
-<p>projects works!</p>
+<style>
+
+</style>
+
+<div class="card-container">
+    <p *ngIf="error">{{error}}</p>
+
+    <div class="card card-small" (click)="onAddNewItemClick()" tabindex="0">
+        <span>پروژه جدید</span>
+    </div>
+
+    <div class="card card-small" (click)="onRefreshClick()" tabindex="0">
+        <span>تازه کردن فهرست</span>
+    </div>
+
+    <div class="card card-small" (click)="onEditModeClick()" tabindex="0">
+        <span *ngIf="isEditModeEnabled">غیر فعال سازی ویرایش</span>
+        <span *ngIf="isEditModeEnabled == false">فعال سازی ویرایش</span>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped w-auto">
+        <tbody>
+            <tr *ngFor="let c of items">
+                <td *ngIf="isEditModeEnabled">
+                    <mat-icon class="warning"  (click)="onDeleteClick(c)">delete</mat-icon>
+                </td>
+                <td *ngIf="isEditModeEnabled">
+                    <mat-icon (click)="onEditClick(c)">edit</mat-icon>
+                </td>
+                <td><strong>{{ c.name }}</strong></td>
+                <td *ngFor="let item of listSortedPropertyKeyValues(c)"><small>{{ item[0] }}: </small><strong>{{ item[1] }}</strong></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
